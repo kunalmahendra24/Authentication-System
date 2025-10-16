@@ -8,10 +8,12 @@ import authRouter from './routes/auth.routes.js';
 import userRouter from './routes/userRoutes.js';
 dotenv.config();
 connectDB();
+const allowedOrigins = ['http://localhost:5173'];
 const app = express();
 const port = process.env.PORT ||4000;
 app.use(express.json());
 app.use(cors({
+    origin:allowedOrigins,
     credentials: true,
 }));
 app.use(cookieParser());
