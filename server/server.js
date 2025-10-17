@@ -8,7 +8,7 @@ import authRouter from './routes/auth.routes.js';
 import userRouter from './routes/userRoutes.js';
 dotenv.config();
 connectDB();
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['https://authentication-system-frontend-zhuh.onrender.com'];
 const app = express();
 const port = process.env.PORT ||4000;
 app.use(express.json());
