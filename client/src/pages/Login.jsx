@@ -44,8 +44,13 @@ const Login = () => {
         toast.error(data.message || "Something went wrong");
       }
     } catch (error) {
-      console.error("❌ Login error:", error);
-      toast.error(error.response?.data?.message || "Something went wrong");
+        console.error("❌ Login error:", error);
+        if (error.response && error.response.data && error.response.data.message) {
+      // ✅ show backend message, like "Invalid password"
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
     }
   };
 
