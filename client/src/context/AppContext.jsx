@@ -3,12 +3,12 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 axios.defaults.withCredentials = true; // ✅ allows cookies to be sent
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000"; // ✅ dynamic base
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL; // ✅ dynamic base
 
 export const AppContext = createContext();
 
 export function AppContextProvider(props) {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
