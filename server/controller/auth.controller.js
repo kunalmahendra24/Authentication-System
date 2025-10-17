@@ -223,7 +223,7 @@ export const sendResetOtp = async (req, res) => {
         user.resetOtp = otp;
         user.verifyOtpExpireAt = otpExpireAt;
 
-        await user.save();
+        await user.save(); 
         // send otp to email
         const mailOptions = {
             from: process.env.SENDER_EMAIL,
