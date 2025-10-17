@@ -35,7 +35,7 @@ export const register = async (req, res) => {
    const isProduction = process.env.NODE_ENV === 'production';
     res.cookie('token', token, { 
     httpOnly: true, 
-    secure: false, 
+    secure: true, 
     sameSite: isProduction ? 'None' : 'Lax', 
     maxAge: 7*24*60*60*1000 
     });
@@ -85,7 +85,7 @@ export const login = async (req, res) => {
        const isProduction = process.env.NODE_ENV === 'production';
     res.cookie('token', token, { 
         httpOnly: true, 
-        secure: false, 
+        secure: true, 
         sameSite: isProduction ? 'None' : 'Lax', 
         maxAge: 7*24*60*60*1000 
     });
