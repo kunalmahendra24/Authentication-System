@@ -12,8 +12,7 @@ export function AppContextProvider(props) {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
-
-
+  const [isLoading, setIsLoading] = useState(true);
   const getAuthState = async ()=>{
     try {
       const {data} =await axios.get(backendUrl+ '/api/auth/is-auth')
@@ -22,8 +21,11 @@ export function AppContextProvider(props) {
         getUserData()
       }
     } catch (error) {
-      toast.error(error.message);
-      
+      // Don't show error toast on first load when user is not authenticated
+      // This is normal behavior and shouldn't show an error to the user
+      console.log('User not authenticated:', error.message);
+    } finally {
+      setIsLoading(false);
     }
   }  
 
@@ -44,6 +46,8 @@ export function AppContextProvider(props) {
       console.error("❌ Error fetching user data:", error);
       setIsLoggedIn(false);
       toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
   useEffect(()=>{
@@ -56,6 +60,7 @@ export function AppContextProvider(props) {
     userData,
     setUserData,
     getUserData,
+    isLoading,
   };
 
   return (
