@@ -13,6 +13,8 @@ export function AppContextProvider(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+
   const getAuthState = async ()=>{
     try {
       const {data} =await axios.get(backendUrl+ '/api/auth/is-auth')
