@@ -12,6 +12,7 @@ export function AppContextProvider(props) {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const getAuthState = async ()=>{
@@ -21,9 +22,10 @@ export function AppContextProvider(props) {
         setIsLoggedIn(true);
         getUserData()
       }
-    } catch (error) {
-      toast.error(error.message);
-      
+     } catch (error) {
+      console.log('User not authenticated:', error.message);
+    } finally {
+      setIsLoading(false);
     }
   }  
 
@@ -44,6 +46,8 @@ export function AppContextProvider(props) {
       console.error("❌ Error fetching user data:", error);
       setIsLoggedIn(false);
       toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
   useEffect(()=>{
@@ -56,6 +60,7 @@ export function AppContextProvider(props) {
     userData,
     setUserData,
     getUserData,
+    isLoading,
   };
 
   return (
