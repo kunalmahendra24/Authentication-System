@@ -45,7 +45,7 @@ export const register = async (req, res) => {
         from: process.env.SENDER_EMAIL,
         to: user.email, 
         subject: 'Welcome to Our Platform',
-        text: `Hello ${user.name},\n\nWelcome to our platform! We're excited to have you on board.\n\nBest regards,\nThe Team`
+        text: `Hello ${user.name},\n\nWelcome to our platform! We're excited to have you on board.\n\nBest regards,\nKunal Mahendra`
     };
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
